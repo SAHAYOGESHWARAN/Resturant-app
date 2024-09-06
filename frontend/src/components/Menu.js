@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchMenuItems } from '../utils/api'; // Adjust the import path as needed
+import { fetchMenuItems } from '../utils/api'; // Adjust the import path if needed
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
