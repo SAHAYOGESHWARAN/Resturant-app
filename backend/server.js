@@ -5,7 +5,7 @@ dotenv.config();
 
 
 app.use(express.json());
-app.use('/api', menuItemsRouter); // Ensure this matches your API base URL
+app.use('/api', menuItemsRouter);
 
 
 const PORT = process.env.PORT || 5000;
