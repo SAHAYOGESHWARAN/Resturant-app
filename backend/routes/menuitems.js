@@ -4,7 +4,7 @@ const MenuItem = require('../models/MenuItem'); // Adjust path if necessary
 
 router.get('/menu-items', async (req, res) => {
   try {
-    const menuItems = await MenuItem.find(); // Adjust query if needed
+    const menuItems = await MenuItem.find(); 
     res.json(menuItems);
   } catch (error) {
     console.error('Error fetching menu items:', error);
