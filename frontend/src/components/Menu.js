@@ -1,23 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { fetchMenuItems } from '../utils/api'; // Adjust the import path as needed
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchMenuItems = async () => {
-      const response = await axios.get('/api/restaurants');
-      setMenuItems(response.data[0].menuItems); // Assuming the first restaurant
+    const loadMenuItems = async () => {
+      try {
+        const items = await fetchMenuItems();
+        setMenuItems(items);
+      } catch (err) {
+        setError('Failed to fetch menu items.');
+      }
     };
-    fetchMenuItems();
+
+    loadMenuItems();
   }, []);
+
+  if (error) return <div>{error}</div>;
 
   return (
     <div>
-      <h2>Menu</h2>
+      <h1>Menu</h1>
       <ul>
-        {menuItems.map((item) => (
-          <li key={item._id}>{item.name} - ${item.price}</li>
+        {menuItems.map(item => (
+          <li key={item.id}>{item.name}</li>
         ))}
       </ul>
     </div>
